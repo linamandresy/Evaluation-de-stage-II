@@ -239,7 +239,9 @@ public class DAOLina {
 			for (int i = 0; i < colCount; i++) {
 				String name = "set".concat(colName[i]);
 				setter = this.getMethodByName(methods, name);
-				setter.invoke(resultElement, rs.getObject(i + 1));
+				Object arg = rs.getObject(i + 1);
+				if(arg.getClass().getName().endsWith("BigDecimal")) setter.invoke(resultElement,rs.getDouble(i+1));
+				else setter.invoke(resultElement, arg);
 			}
 			result.add(resultElement);
 		}
@@ -274,6 +276,41 @@ public class DAOLina {
 		try{
 			c = this.connect();
 			return find(c, cl);
+		}catch(Exception ex){
+			throw ex;
+		}finally{
+			if(c!=null) c.close();
+		}
+	}
+	public Object findById(Connection c, Class cl,int id) throws Exception {
+		String tableName = cl.getSimpleName();
+		String[] fieldName = getFieldName(cl);
+		String sql = "SELECT ";
+		for (int i = 0; i < fieldName.length; i++) {
+			if (i != 0)
+				sql = sql.concat(",");
+			sql = sql.concat(fieldName[i].toUpperCase());
+		}
+		sql = sql.concat(" FROM ").concat(tableName).concat(" WHERE ID").concat(tableName).concat(" = ?");
+		PreparedStatement pst = c.prepareStatement(sql);
+		pst.setInt(1, id);
+		ResultSet rs = null;
+		try {
+			rs = pst.executeQuery();
+			LinkedList result = this.handleResultSet(rs, cl);
+			return result.getFirst();
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+			if (rs != null)
+				rs.close();
+		}
+	}
+	public Object findById(Class cl,int id)throws Exception{
+		Connection c = null;
+		try{
+			c = this.connect();
+			return findById(c, cl, id);
 		}catch(Exception ex){
 			throw ex;
 		}finally{

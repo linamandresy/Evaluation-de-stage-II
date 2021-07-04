@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
 
   login():void{
     this.service.login(this.logins,this.passwords).subscribe((res)=>{
-      if(res.status==200) this.router.navigate(['']);
+      if(res.status==200) {
+        sessionStorage.setItem("token",res.data);
+        this.router.navigate(['']);
+      }
       else this.router.navigate(['error',res.data]);
     },(err)=>{
       this.router.navigate(['error',err.message]);

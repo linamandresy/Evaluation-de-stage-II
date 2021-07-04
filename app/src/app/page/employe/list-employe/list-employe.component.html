@@ -1,1 +1,33 @@
-<p>list-employe works!</p>
+<div class="container">
+	<h1>Listes des employés</h1>
+	<hr>
+	<div class="col-md-12">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Matricule</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Naissance</th>
+					<th>Embauche</th>
+					<th>Fincontrat</th>
+					<th>Categorie</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let e of employes">
+					<td>{{e.matricule}}</td>
+					<td>{{e.nom}}</td>
+					<td>{{e.prenom}}</td>
+					<td>{{e.naissance}}</td>
+					<td>{{e.embauche}}</td>
+					<td>{{e.fincontrat}}</td>
+					<td>{{e.categorie}}</td>
+					<td><button class="btn btn-primary">Modifier</button></td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+</div>

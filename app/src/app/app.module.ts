@@ -7,13 +7,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './page/login/login.component';
 import { ErrorComponent } from './page/error/error.component';
 import { ListEmployeComponent } from './page/employe/list-employe/list-employe.component';
+import { InsertCategorieComponent } from './page/categorie/insert-categorie/insert-categorie.component';
+import { ListCategorieComponent } from './page/categorie/list-categorie/list-categorie.component';
+import { UpdateCategorieComponent } from './page/categorie/update-categorie/update-categorie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ErrorComponent,
-    ListEmployeComponent
+    ListEmployeComponent,
+    InsertCategorieComponent,
+    ListCategorieComponent,
+    UpdateCategorieComponent
   ],
   imports: [
     BrowserModule,

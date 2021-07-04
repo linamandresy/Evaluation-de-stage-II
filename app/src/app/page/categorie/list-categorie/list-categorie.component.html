@@ -1,0 +1,24 @@
+<div class="container-fluid">
+	<h1>Catégories</h1>
+	<hr>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom de Categorie</th>
+				<th>Nombre d'heure de travail hebdomadaire</th>
+				<th>Salaire</th>
+				<th>Indamnité</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let c of categories">
+				<td>{{c.nomCategorie}}</td>
+				<td>{{c.nbHeureN}} heures</td>
+				<td>{{c.salaireHN}} Ar</td>
+				<td>{{c.indamnite}}Ar</td>
+				<td><button class="btn btn-primary">Mofidier</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

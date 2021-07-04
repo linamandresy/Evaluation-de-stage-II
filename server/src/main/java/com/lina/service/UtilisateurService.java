@@ -17,12 +17,18 @@ public class UtilisateurService {
 			Token t = new Token(user.getIdUtilisateur());
 			dao.insert(c, t);
 			c.commit();
-			return new Response(200,user);
+			return new Response(200,t.getToken());
 		}catch(Exception ex){
 			c.rollback();
 			return new Response(400,ex.getMessage());
 		}finally{
 			if(c!=null) c.close();
 		}
+	}
+	public static Token checkToken(Connection c,String token)throws Exception{
+		return Token.getValidToken(c,token.substring(7));
+	}
+	public static Token checkToken(String token)throws Exception{
+		return Token.getValidToken(token.substring(7));
 	}
 }

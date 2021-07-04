@@ -1,7 +1,7 @@
 create table categorie(
 	idCategorie serial primary key,
 	nomCategorie varchar(50) not null,
-	nbHeureN decimal(4,2) not null check(nbHeureN>0),
+	nbHeureN decimal(10,2) not null check(nbHeureN>0),
 	salaireHN decimal(10,2) not null check(salaireHN>0),
 	indamnite decimal(10,2) not null check(indamnite>0 and indamnite<salaireHN)
 );
