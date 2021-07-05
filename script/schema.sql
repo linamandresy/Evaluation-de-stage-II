@@ -21,33 +21,12 @@ create table employe(
 
 create table heureSup(
 	idHeureSup serial primary key,
+	nomHS varchar(20) not null,
 	nbHeure int not null check(nbHeure>0),
 	idHSPrec int ,
+	pourcentage decimal(10,2) not null check(pourcentage>=100 and pourcentage<=200),
 	foreign key (idHSPrec) references heureSup(idHeureSup)
 );
-
-create table repetition(
-	idRepetition serial primary key,
-	nomRepetition varchar(20) not null,
-	delaiRepetition decimal(10,2) not null
-);
-
-create table heureMajoration(
-	idMajoration serial primary key,
-	nomMajoration varchar(50) not null,
-	dateMaj timestamp not null,
-	delai decimal not null,
-	pourcentage decimal not null check(pourcentage>=0 and pourcentage<=100),
-	idRepetition int ,
-	foreign key(idRepetition) references repetition(idRepetition)
-);
-
-create table pointage(
-	idPointage serial primary key,
-	idemploye int not null,
-	pointe timestamp not null
-);
-
 
 create table utilisateur(
 	idUtilisateur serial primary key,
@@ -61,4 +40,39 @@ create table token(
 	idUtilisateur int not null,
 	expiration timestamp not null,
 	foreign key (idUtilisateur) references utilisateur(idUtilisateur)
+);
+
+-- Modification J1
+create table majoration(
+	idmajoration serial primary key,
+	nomMaj varchar(20) not null,
+	pourcentage decimal(5,2) not null check(pourcentage>=100 and pourcentage<=200)
+);
+
+
+create table semaine(
+	idsemaine serial primary key,
+	noSemaine varchar(20) not null default getSemaine()
+);
+
+create table joursemaine(
+	idJoursemaine serial primary key,
+	nomJour varchar(20) not null,
+	idmajoration int not null,
+	foreign key (idmajoration) references majoration(idmajoration)
+);
+
+create table datecalendrier(
+	iddatecalendrier serial primary key,
+	idjoursemaine int not null,
+	idmajoration int not null,
+	foreign key (idjoursemaine) references joursemaine(idjoursemaine),
+	foreign key (idmajoration) references majoration(idmajoration)
+);
+
+create table pointage(
+	idpointage serial primary key,
+	duree decimal(5,2) not null check(duree>=0 and duree<24),
+	idemploye int not null,
+	foreign key (idemploye) references employe(idemploye)
 );

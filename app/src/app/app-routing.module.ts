@@ -7,27 +7,43 @@ import { InsertEmployeComponent } from './page/employe/insert-employe/insert-emp
 import { ListEmployeComponent } from './page/employe/list-employe/list-employe.component';
 import { UpdateEmployeComponent } from './page/employe/update-employe/update-employe.component';
 import { ErrorComponent } from './page/error/error.component';
+import { InsertHsComponent } from './page/hs/insert-hs/insert-hs.component';
+import { ListHsComponent } from './page/hs/list-hs/list-hs.component';
+import { UpdateHsComponent } from './page/hs/update-hs/update-hs.component';
 import { LoginComponent } from './page/login/login.component';
+import { ListSemaineComponent } from './page/semaine/list-semaine/list-semaine.component';
 
 const routes: Routes = [
   {
     path:'',
     component:ListEmployeComponent
   },{
+    path:'login',
+    component:LoginComponent
+  },{
     path:'insert',
     component:InsertEmployeComponent
+  },{
+    path:'hs',
+    component:ListHsComponent
+  },{
+    path:'categorie',
+    component:ListCategorieComponent
+  },{
+    path:'semaine',
+    component:ListSemaineComponent
+  },{
+    path:'hs/insert',
+    component:InsertHsComponent
+  },{
+    path:'hs/:id',
+    component:UpdateHsComponent
   },{
     path:':id',
     component:UpdateEmployeComponent
   },{
-    path:'login',
-    component:LoginComponent
-  },{
     path:'error/:message',
     component:ErrorComponent
-  },{
-    path:'categorie',
-    component:ListCategorieComponent
   },{
     path:'categorie/insert',
     component:InsertCategorieComponent

@@ -1,0 +1,23 @@
+<div class="container">
+	<h1>Heure supplémentaires</h1>
+	<button class="btn btn-primary" [routerLink]="['insert']">Ajouter Heure supplémentaires</button>
+	<hr>
+	<table class="table" id="table">
+		<thead>
+			<tr>
+				<th>Nom heure supplémentaire</th>
+				<th>Durée</th>
+				<th>Pourcentage</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let h of heuresups">
+				<td>{{h.nomHS}}</td>
+				<td>{{h.nbHeure}} heures</td>
+				<td>{{h.pourcentage}} %</td>
+				<td><button class="btn btn-primary" [routerLink]="[h.idHeureSup]">Modifier</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

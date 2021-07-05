@@ -1,0 +1,19 @@
+<div class="container">
+	<h1>Semaines de travail</h1>
+	<insert-semaine></insert-semaine>
+	<hr>
+	<table class="table" id="table">
+		<thead>
+			<tr>
+				<th>N° Semaine</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let s of semaine">
+				<td>{{s.noSemaine}}</td>
+				<td><button class="btn btn-primary" [routerLink]="[s.idSemaine]">Définir Férier</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

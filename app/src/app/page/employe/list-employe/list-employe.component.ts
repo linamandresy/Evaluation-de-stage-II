@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeService } from 'src/app/service/employe.service';
-
+declare var $:any;
 @Component({
   selector: 'app-list-employe',
   templateUrl: './list-employe.component.html',
@@ -16,7 +16,12 @@ export class ListEmployeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getEmploye().subscribe((res)=>{
-      if(res.status==200) this.employes=res.data;
+      if(res.status==200) {
+        this.employes=res.data;
+        $(function(){
+          $("#table").DataTable();
+        });
+      }
       else this.router.navigate(['error',res.data]);
     },(err)=>{
       this.router.navigate(['error',err.message]);

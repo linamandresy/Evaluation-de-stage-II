@@ -1,0 +1,28 @@
+<div class="container">
+	<h1>Modification heure supplémentaire</h1>
+	<hr>
+	<form>
+		<div class="form-group">
+			<label for="nomHS">Nom Heure Supplémentaire</label>
+			<input [ngModelOptions]="{standalone: true}" id="nomHS" [(ngModel)]="nomHS" type="text" class="form-control" placeholder="ex : HS 30" required/>
+		</div>
+		<div class="form-group">
+			<label for="nbHS">Nombre d'heure Supplémentaire</label>
+			<input [ngModelOptions]="{standalone: true}" id="nbHS" [(ngModel)]="nbHS" type="number" class="form-control" placeholder="ex : 8 heures" min ="0" required/>
+		</div>
+		<div class="form-group">
+			<label for="pourcentage">Pourcentage</label>
+			<input [ngModelOptions]="{standalone: true}" id="pourcentage" [(ngModel)]="pourcentage" type="number" class="form-control" placeholder="ex : 120%" min ="0" required/>
+		</div>
+		
+		<div class="form-group">
+			<label for="hsprec">Heure Supplémentaire précédente</label>
+			<select name="hsprec" class="form-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="idHSPrec">
+				<option *ngFor="let h of heuresups" value="{{h.idHeureSup}}">{{h.nomHS}}</option>
+			</select>
+		</div>
+		
+		<button class="btn btn-primary" (click)="update()">Enregistrer</button>
+	</form>
+	<small>{{error}}</small>
+</div>
