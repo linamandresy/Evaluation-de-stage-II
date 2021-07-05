@@ -1,6 +1,5 @@
 package com.lina.model.dao;
 
-
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -59,13 +58,14 @@ public class DAOLina {
 		return result;
 	}
 
-	public void insert(Connection c , Object obj)throws Exception{
+	public void insert(Connection c, Object obj) throws Exception {
 		Class cl = obj.getClass();
 		String tableName = cl.getSimpleName();
 		String[] fieldName = getFieldName(cl);
 		String sql = "INSERT INTO ".concat(tableName).concat("(");
 		for (int i = 0; i < fieldName.length; i++) {
-			if(!fieldName[i].toLowerCase().startsWith("id".concat(tableName.toLowerCase()))){
+			if (!fieldName[i].toLowerCase().startsWith("id".concat(tableName.toLowerCase()))
+					&& cl.getMethod("get".concat(fieldName[i]), null).invoke(obj, null) != null) {
 				if (!sql.endsWith("("))
 					sql = sql.concat(",");
 				sql = sql.concat(fieldName[i].toUpperCase());
@@ -73,7 +73,8 @@ public class DAOLina {
 		}
 		sql = sql.concat(") VALUES (");
 		for (int i = 0; i < fieldName.length; i++) {
-			if(!fieldName[i].toLowerCase().startsWith("id".concat(tableName.toLowerCase()))){
+			if (!fieldName[i].toLowerCase().startsWith("id".concat(tableName.toLowerCase()))
+					&& cl.getMethod("get".concat(fieldName[i]), null).invoke(obj, null) != null) {
 				if (!sql.endsWith("("))
 					sql = sql.concat(",");
 				sql = sql.concat("?");
@@ -81,9 +82,10 @@ public class DAOLina {
 		}
 		sql = sql.concat(")");
 		PreparedStatement pst = c.prepareStatement(sql);
-		int n=1;
+		int n = 1;
 		for (int i = 0; i < fieldName.length; i++) {
-			if(!fieldName[i].toLowerCase().startsWith("id".concat(tableName.toLowerCase()))){
+			if (!fieldName[i].toLowerCase().startsWith("id".concat(tableName.toLowerCase()))
+					&& cl.getMethod("get".concat(fieldName[i]), null).invoke(obj, null) != null) {
 				Method get = cl.getMethod("get".concat(fieldName[i]), null);
 				Object value = get.invoke(obj, null);
 				pst.setObject(n, value);
@@ -92,33 +94,40 @@ public class DAOLina {
 		}
 		pst.execute();
 	}
+
 	public void insertAll(Connection c, Object obj) throws Exception {
 		Class cl = obj.getClass();
 		String tableName = cl.getSimpleName();
 		String[] fieldName = getFieldName(cl);
 		String sql = "INSERT INTO ".concat(tableName).concat("(");
 		for (int i = 0; i < fieldName.length; i++) {
-			if (i != 0)
-				sql = sql.concat(",");
-			sql = sql.concat(fieldName[i].toUpperCase());
+			if (cl.getMethod("get".concat(fieldName[i]), null).invoke(obj, null) != null) {
+				if (i != 0)
+					sql = sql.concat(",");
+				sql = sql.concat(fieldName[i].toUpperCase());
+			}
 		}
 		sql = sql.concat(") VALUES (");
 		for (int i = 0; i < fieldName.length; i++) {
-			if (i != 0)
-				sql = sql.concat(",");
-			sql = sql.concat("?");
+			if (cl.getMethod("get".concat(fieldName[i]), null).invoke(obj, null) != null) {
+				if (i != 0)
+					sql = sql.concat(",");
+				sql = sql.concat("?");
+			}
 		}
 		sql = sql.concat(")");
 		PreparedStatement pst = c.prepareStatement(sql);
 		for (int i = 0; i < fieldName.length; i++) {
-			Method get = cl.getMethod("get".concat(fieldName[i]), null);
-			Object value = get.invoke(obj, null);
-			pst.setObject(i + 1, value);
+			if (cl.getMethod("get".concat(fieldName[i]), null).invoke(obj, null) != null) {
+				Method get = cl.getMethod("get".concat(fieldName[i]), null);
+				Object value = get.invoke(obj, null);
+				pst.setObject(i + 1, value);
+			}
 		}
 		pst.execute();
 	}
 
-	public void insert(Object obj)throws Exception{
+	public void insert(Object obj) throws Exception {
 		Connection c = null;
 		try {
 			c = connect();
@@ -240,8 +249,10 @@ public class DAOLina {
 				String name = "set".concat(colName[i]);
 				setter = this.getMethodByName(methods, name);
 				Object arg = rs.getObject(i + 1);
-				if(arg.getClass().getName().endsWith("BigDecimal")) setter.invoke(resultElement,rs.getDouble(i+1));
-				else setter.invoke(resultElement, arg);
+				if (arg.getClass().getName().endsWith("BigDecimal"))
+					setter.invoke(resultElement, rs.getDouble(i + 1));
+				else
+					setter.invoke(resultElement, arg);
 			}
 			result.add(resultElement);
 		}
@@ -271,18 +282,21 @@ public class DAOLina {
 				rs.close();
 		}
 	}
-	public LinkedList find(Class cl)throws Exception{
+
+	public LinkedList find(Class cl) throws Exception {
 		Connection c = null;
-		try{
+		try {
 			c = this.connect();
 			return find(c, cl);
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			throw ex;
-		}finally{
-			if(c!=null) c.close();
+		} finally {
+			if (c != null)
+				c.close();
 		}
 	}
-	public Object findById(Connection c, Class cl,int id) throws Exception {
+
+	public Object findById(Connection c, Class cl, int id) throws Exception {
 		String tableName = cl.getSimpleName();
 		String[] fieldName = getFieldName(cl);
 		String sql = "SELECT ";
@@ -306,15 +320,17 @@ public class DAOLina {
 				rs.close();
 		}
 	}
-	public Object findById(Class cl,int id)throws Exception{
+
+	public Object findById(Class cl, int id) throws Exception {
 		Connection c = null;
-		try{
+		try {
 			c = this.connect();
 			return findById(c, cl, id);
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			throw ex;
-		}finally{
-			if(c!=null) c.close();
+		} finally {
+			if (c != null)
+				c.close();
 		}
 	}
 }

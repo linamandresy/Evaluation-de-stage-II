@@ -28,4 +28,21 @@ export class CategorieService {
   getlist():Observable<any>{
     return this.http.get(base_url+"categorie");
   }
+  getById(id:any):Observable<any>{
+    return this.http.get(base_url+"categorie/"+id);
+  }
+  update(id:any ,nomCategorie:any,nbHeureN:any,salaireHN:any, indamnite:any):Observable<any>{
+    const data = new FormData();
+    data.append("nomCategorie",nomCategorie);
+    data.append("nbHeureN",nbHeureN);
+    data.append("salaireHN",salaireHN);
+    data.append("salaireHN",salaireHN);
+    data.append("indamnite",indamnite);
+    const opt = {
+      headers:{
+        Authorization:'Bearer '+sessionStorage.getItem('token')
+      }
+    }
+    return this.http.put(base_url+"categorie/"+id,data,opt);
+  }
 }

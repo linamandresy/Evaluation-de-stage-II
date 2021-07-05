@@ -10,6 +10,8 @@ import { ListEmployeComponent } from './page/employe/list-employe/list-employe.c
 import { InsertCategorieComponent } from './page/categorie/insert-categorie/insert-categorie.component';
 import { ListCategorieComponent } from './page/categorie/list-categorie/list-categorie.component';
 import { UpdateCategorieComponent } from './page/categorie/update-categorie/update-categorie.component';
+import { InsertEmployeComponent } from './page/employe/insert-employe/insert-employe.component';
+import { UpdateEmployeComponent } from './page/employe/update-employe/update-employe.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { UpdateCategorieComponent } from './page/categorie/update-categorie/upda
     ListEmployeComponent,
     InsertCategorieComponent,
     ListCategorieComponent,
-    UpdateCategorieComponent
+    UpdateCategorieComponent,
+    InsertEmployeComponent,
+    UpdateEmployeComponent
   ],
   imports: [
     BrowserModule,

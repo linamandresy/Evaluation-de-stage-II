@@ -38,12 +38,21 @@ public class CategorieService {
 			return new Response(400,ex.getMessage());
 		}
 	}
-	public static Response updateCategorie(String token,int id,String nomCategorie, double nbHeureN, double salaireHN, double indamnite){
+	public static Response updateCategorie(String token,int id,String nomCategorie, double nbHeureN, double salaireHN, double indamnite)throws Exception{
 		Connection c = null;
 		try {
-			c = db
+			DAOLina dao = DBConnect.getDAO();
+			c = dao.connect();
+			UtilisateurService.checkToken(c, token);
+			Categorie cat = new Categorie(id, nomCategorie, nbHeureN, salaireHN, indamnite);
+			dao.update(c, cat);
+			c.commit();
+			return new Response(200,"Categorie modifié");
 		} catch (Exception e) {
-			//TODO: handle exception
+			if(c!=null) c.rollback();
+			return new Response(400,e.getMessage());
+		}finally{
+			if(c!=null) c.close();
 		}
 	}
 }

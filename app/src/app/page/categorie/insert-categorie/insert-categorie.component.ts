@@ -12,6 +12,7 @@ export class InsertCategorieComponent implements OnInit {
   nbhn:any='';
   salaire:any='';
   ind:any='';
+  cat:any='';
   constructor(
     private service:CategorieService,
     private router:Router

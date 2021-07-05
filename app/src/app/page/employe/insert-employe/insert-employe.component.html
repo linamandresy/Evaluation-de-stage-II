@@ -1,0 +1,33 @@
+<div class="container">
+	<h1>Nouvel employee</h1>
+	<hr>
+	<form>
+		<div class="form-group">
+			<label for="nom">Nom</label>
+			<input [ngModelOptions]="{standalone: true}" [(ngModel)]="nom" type="text" id="nom" placeholder="ex : Rabenandrasana" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="prenom">Prénom</label>
+			<input [ngModelOptions]="{standalone: true}" [(ngModel)]="prenom" type="text" id="prenom" placeholder="ex : Lina" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="naissance">Date de naissance</label>
+			<input [ngModelOptions]="{standalone: true}" [(ngModel)]="naissance" type="date" id="naissance" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="embauche">Embauche</label>
+			<input [ngModelOptions]="{standalone: true}" [(ngModel)]="embauche" type="date" id="embauche"  class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="finc">Fin de contrat</label>
+			<input [ngModelOptions]="{standalone: true}" [(ngModel)]="fincontrat" type="date" id="finc" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="categorie">Catégorie</label>
+			<select [ngModelOptions]="{standalone: true}" [(ngModel)]="idCategorie" name="categorie"  class="form-select" required>
+				<option *ngFor="let c of categories" value="{{c.idCategorie}}">{{c.nomCategorie}}</option>
+			</select>
+		</div>
+		<button class="btn btn-primary" (click)="save()">Enregistrer</button>
+	</form>
+</div>

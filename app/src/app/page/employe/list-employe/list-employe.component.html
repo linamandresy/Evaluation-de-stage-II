@@ -1,6 +1,7 @@
 <div class="container">
 	<h1>Listes des employés</h1>
 	<hr>
+	<button class="btn btn-primary" [routerLink]="['insert']">Ajouter Employé</button>
 	<div class="col-md-12">
 
 		<table class="table">
@@ -23,11 +24,11 @@
 					<td>{{e.prenom}}</td>
 					<td>{{e.naissance}}</td>
 					<td>{{e.embauche}}</td>
-					<td>{{e.fincontrat}}</td>
+					<td>{{e.finContrat}}</td>
 					<td>{{e.categorie}}</td>
-					<td><button class="btn btn-primary">Modifier</button></td>
+					<td><button class="btn btn-primary" [routerLink]="[e.idEmploye]">Modifier</button></td>
 				</tr>
-		</tbody>
-	</table>
-</div>
+			</tbody>
+		</table>
+	</div>
 </div>

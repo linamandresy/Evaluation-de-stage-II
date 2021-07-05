@@ -33,9 +33,7 @@ public class CategorieController {
 		return CategorieService.findById(id);
 	}
 	@PutMapping(value="/{id}")
-	public Response putCategorie(@RequestHeader(name="Authorization") String token ,@PathVariable int id ,String nomCategorie, double nbHeureN, double salaireHN, double indamnite) {
-		//TODO: process PUT request
-		
-		return entity;
+	public Response putCategorie(@RequestHeader(name="Authorization") String token ,@PathVariable int id ,String nomCategorie, double nbHeureN, double salaireHN, double indamnite) throws Exception{
+		return CategorieService.updateCategorie(token, id, nomCategorie, nbHeureN, salaireHN, indamnite);
 	}
 }
