@@ -72,3 +72,5 @@ create table pointage(
 	foreign key (idJourSemaine) references JourSemaine(idJourSemaine),
 	foreign key (idemploye) references employe(idemploye)
 );
+
+alter table employe alter column fincontrat drop not null;
