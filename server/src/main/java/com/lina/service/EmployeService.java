@@ -57,4 +57,11 @@ public class EmployeService {
 			if(c!=null) c.close();
 		}
 	}
+	public static Response findById(int id){
+		try {
+			return new Response(200,EmployeLabel.findById(id));
+		} catch (Exception e) {
+			return new Response(400,e.getMessage());
+		}
+	}
 }

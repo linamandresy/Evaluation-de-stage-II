@@ -1,0 +1,109 @@
+<div class="container">
+	<h1>Pointage</h1>
+	<h4>Nom : <strong>{{this.employe.nom}}</strong></h4>
+	<h4>Prénom : <strong>{{employe.prenom}}</strong></h4>
+	<h4>N° Matricule : <strong>{{employe.matricule}}</strong></h4>
+	<h4>Catégorie : <strong>{{employe.categorie}}</strong></h4>
+	<hr>
+	<div class="insert" *ngIf="!isSet">
+		<form>
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Lundi</th>
+						<th>Mardi</th>
+						<th>Mercredi</th>
+						<th>Jeudi</th>
+						<th>Vendredi</th>
+						<th>Samedi</th>
+						<th>Dimanche</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Jour (5h-22h)</th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="lundi.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="mardi.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="mercredi.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="jeudi.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="vendredi.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="samedi.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="dimanche.dureeJour" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+					</tr>
+					<tr>
+						<th>Nuit (0h-5h/22h-0h)</th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="lundi.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="mardi.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="mercredi.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="jeudi.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="vendredi.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="samedi.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input  [ngModelOptions]="{standalone: true}" [(ngModel)]="dimanche.dureeNuit" type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+					</tr>
+					<tr>
+						<th>Férier</th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="lundi.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="mardi.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="mercredi.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="jeudi.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="vendredi.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="samedi.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+						<th><input [ngModelOptions]="{standalone: true}" [(ngModel)]="dimanche.dureeFerier"  type="number" class="form-control" placeholder="ex: 8h" min="0" /></th>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th colspan="4">
+							<button class="btn btn-secondary" type="reset">Tout effacer</button>						
+						</th>
+						<th colspan="4">
+							<button class="btn btn-primary" (click)="save()">Valider</button>
+						</th>
+					</tr>
+				</tfoot>
+			</table>
+		</form>
+	</div>
+	<div class="ficheHorraire" *ngIf="isSet">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Designation</th>
+					<th>Heure Totale</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Nb Heures Jours</th>
+					<th>{{ficheHorraire.nbHeureJour}}</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Nuits(30%)</th>
+					<th>{{ficheHorraire.nbHeureNuit}}</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Dimanche(40%)</th>
+					<th>{{ficheHorraire.nbHeureDimanche}}</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Jours férié où il a travaillé</th>
+					<th>{{ficheHorraire.nbHeureFT}}</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Jours férié</th>
+					<th>{{ficheHorraire.nbHeureF}}</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Sup 30%</th>
+					<th>{{ficheHorraire.nbHeureSup30}}</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Sup 50%</th>
+					<th>{{ficheHorraire.nBHeureSup50}}</th>
+				</tr>
+			</tbody>
+		</table>
+		<button  class="btn btn-primary" [routerLink]="['/paie',id]">Fiche de paie</button>
+	</div>
+</div>

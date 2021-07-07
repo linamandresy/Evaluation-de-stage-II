@@ -62,17 +62,13 @@ create table joursemaine(
 	foreign key (idmajoration) references majoration(idmajoration)
 );
 
-create table datecalendrier(
-	iddatecalendrier serial primary key,
-	idjoursemaine int not null,
-	idmajoration int not null,
-	foreign key (idjoursemaine) references joursemaine(idjoursemaine),
-	foreign key (idmajoration) references majoration(idmajoration)
-);
-
 create table pointage(
 	idpointage serial primary key,
-	duree decimal(5,2) not null check(duree>=0 and duree<24),
+	idJoursemaine int not null,
 	idemploye int not null,
+	dureeJour decimal(5,2) not null check(dureeJour>=0 and dureeJour<24),
+	dureeNuit decimal(5,2) not null check(dureeNuit>=0 and dureeNuit<24),
+	dureeFerier decimal(5,2) not null check(dureeFerier>=0 and dureeFerier<24),
+	foreign key (idJourSemaine) references JourSemaine(idJourSemaine),
 	foreign key (idemploye) references employe(idemploye)
 );

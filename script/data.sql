@@ -49,17 +49,10 @@ values
 		100
 	);
 
-insert into joursemaine(nomjour,idmajoration) values ('Lundi Jour',4);
-insert into joursemaine(nomjour,idmajoration) values ('Mardi Jour',4);
-insert into joursemaine(nomjour,idmajoration) values ('Mercredi Jour',4);
-insert into joursemaine(nomjour,idmajoration) values ('Jeudi Jour',4);
-insert into joursemaine(nomjour,idmajoration) values ('Vendredi Jour',4);
-insert into joursemaine(nomjour,idmajoration) values ('Samedi Jour',4);
-insert into joursemaine(nomjour,idmajoration) values ('Dimanche Jour',2);
-insert into joursemaine(nomjour,idmajoration) values ('Lundi Nuit',1);
-insert into joursemaine(nomjour,idmajoration) values ('Mardi Nuit',1);
-insert into joursemaine(nomjour,idmajoration) values ('Mercredi Nuit',1);
-insert into joursemaine(nomjour,idmajoration) values ('Jeudi Nuit',1);
-insert into joursemaine(nomjour,idmajoration) values ('Vendredi Nuit',1);
-insert into joursemaine(nomjour,idmajoration) values ('Samedi Nuit',1);
-insert into joursemaine(nomjour,idmajoration) values ('Dimanche Nuit',2);
+insert into joursemaine(nomjour,idmajoration) values ('Lundi',4);
+insert into joursemaine(nomjour,idmajoration) values ('Mardi',4);
+insert into joursemaine(nomjour,idmajoration) values ('Mercredi',4);
+insert into joursemaine(nomjour,idmajoration) values ('Jeudi',4);
+insert into joursemaine(nomjour,idmajoration) values ('Vendredi',4);
+insert into joursemaine(nomjour,idmajoration) values ('Samedi',4);
+insert into joursemaine(nomjour,idmajoration) values ('Dimanche',2);

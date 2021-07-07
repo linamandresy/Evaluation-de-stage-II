@@ -11,6 +11,8 @@ import { InsertHsComponent } from './page/hs/insert-hs/insert-hs.component';
 import { ListHsComponent } from './page/hs/list-hs/list-hs.component';
 import { UpdateHsComponent } from './page/hs/update-hs/update-hs.component';
 import { LoginComponent } from './page/login/login.component';
+import { FichePaieComponent } from './page/paie/fiche-paie/fiche-paie.component';
+import { InsertPointageComponent } from './page/pointage/insert-pointage/insert-pointage.component';
 import { ListSemaineComponent } from './page/semaine/list-semaine/list-semaine.component';
 
 const routes: Routes = [
@@ -39,6 +41,9 @@ const routes: Routes = [
     path:'hs/:id',
     component:UpdateHsComponent
   },{
+    path:'paie/:id',
+    component:FichePaieComponent
+  },{
     path:':id',
     component:UpdateEmployeComponent
   },{
@@ -50,6 +55,9 @@ const routes: Routes = [
   },{
     path:'categorie/:id',
     component:UpdateCategorieComponent
+  },{
+    path:'pointage/:idemp/insert',
+    component:InsertPointageComponent
   }
 ];
 

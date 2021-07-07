@@ -18,6 +18,8 @@ import { UpdateHsComponent } from './page/hs/update-hs/update-hs.component';
 import { HeadNavComponent } from './component/head-nav/head-nav.component';
 import { InsertSemaineComponent } from './page/semaine/insert-semaine/insert-semaine.component';
 import { ListSemaineComponent } from './page/semaine/list-semaine/list-semaine.component';
+import { InsertPointageComponent } from './page/pointage/insert-pointage/insert-pointage.component';
+import { FichePaieComponent } from './page/paie/fiche-paie/fiche-paie.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ListSemaineComponent } from './page/semaine/list-semaine/list-semaine.c
     UpdateHsComponent,
     HeadNavComponent,
     InsertSemaineComponent,
-    ListSemaineComponent
+    ListSemaineComponent,
+    InsertPointageComponent,
+    FichePaieComponent
   ],
   imports: [
     BrowserModule,

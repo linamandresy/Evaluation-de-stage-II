@@ -32,7 +32,7 @@ public class EmployeController {
 	}
 	@GetMapping(value="/{id}")
 	public Response getEmploye(@PathVariable int id) throws Exception{	
-		return EmployeService.getEmployeById(id);
+		return EmployeService.findById(id);
 	}
 	@PutMapping(value="/{id}")
 	public Response putEmploye(@RequestHeader(name="Authorization") String token,@PathVariable int id, String nom, String prenom, String matricule, Date naissance, Date embauche,Date finContrat, int idCategorie) throws Exception{

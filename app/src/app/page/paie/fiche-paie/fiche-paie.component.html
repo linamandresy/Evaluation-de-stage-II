@@ -1,0 +1,75 @@
+<div class="container">
+	<div id="pdf" #pdf>
+		<h1>Fiche de paie</h1>
+		<h4>Nom : <strong>{{this.fiche.employe.nom}}</strong></h4>
+		<h4>Prénom : <strong>{{fiche.employe.prenom}}</strong></h4>
+		<h4>N° Matricule : <strong>{{fiche.employe.matricule}}</strong></h4>
+		<h4>Catégorie : <strong>{{fiche.categorie.nomCategorie}}</strong></h4>
+		<hr>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Désignation</th>
+					<th>Total Heure</th>
+					<th>Taux Horraire</th>
+					<th>Montant</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Nb Heures Jours</th>
+					<th>{{fiche.nbHeureJour}} h</th>
+					<th>{{fiche.tauxHJour | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantJour | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Nuits(30%)</th>
+					<th>{{fiche.nbHeureNuit}} h</th>
+					<th>{{fiche.tauxHNuit | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantNuit | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Dimanche</th>
+					<th>{{fiche.nbHeureDimanche}} h</th>
+					<th>{{fiche.tauxHDimanche | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantDimanche | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Jours Férié Travaillé</th>
+					<th>{{fiche.nbHeureFT}} h</th>
+					<th>{{fiche.tauxHFT | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantHFT | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Jours Férié</th>
+					<th>{{fiche.nbHeureF}} h</th>
+					<th>{{fiche.tauxHF | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantF | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Supp 30%</th>
+					<th>{{fiche.nbHeureSup30}} h</th>
+					<th>{{fiche.tauxHS30 | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantHS30 | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th>Nb Heures Sup 50%</th>
+					<th>{{fiche.nBHeureSup50}} h</th>
+					<th>{{fiche.tauxHS50 | number:"1.2-2"}} Ar/heure</th>
+					<th>{{fiche.montantHS50 | number:"1.2-2"}} Ar</th>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th colspan="3">Indemnité</th>
+					<th>{{fiche.indemnite  | number:"1.2-2"}} Ar</th>
+				</tr>
+				<tr>
+					<th colspan="3">Total à payer</th>
+					<th>{{fiche.vraiTotal  | number:"1.2-2"}} Ar</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<button class="btn btn-primary" onclick="generatePDF()">Exporter PDF</button>
+</div>

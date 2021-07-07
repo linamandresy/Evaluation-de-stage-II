@@ -49,4 +49,31 @@ public class EmployeLabel extends Employe {
 			if(c!=null) c.close();
 		}
 	}
+	public static EmployeLabel findById(Connection c,int id)throws Exception{
+		String sql="SELECT idemploye,nom,prenom,matricule,naissance,embauche,fincontrat,employe.idCategorie,categorie.nomcategorie FROM EMPLOYE join categorie on employe.idcategorie=categorie.idcategorie WHERE idemploye=?";
+		PreparedStatement pst = c.prepareStatement(sql);
+		pst.setInt(1, id);
+		ResultSet rs = null;
+		try{
+			rs = pst.executeQuery();
+			if(rs.next())
+				return new EmployeLabel(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getDate(6),rs.getDate(7),rs.getInt(8),rs.getString(9));
+			throw new Exception("Employé inexistant");
+		}catch(Exception ex){
+			throw ex;
+		}finally{
+			if(rs!=null) rs.close();
+		}
+	}
+	public static EmployeLabel findById(int id)throws Exception{
+		Connection c = null;
+		try {
+			c = DBConnect.getDAO().connect();
+			return findById(c, id);
+		} catch (Exception e) {
+			throw e;
+		}finally{
+			if(c!=null) c.close();
+		}
+	}
 }

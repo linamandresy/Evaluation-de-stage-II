@@ -15,6 +15,7 @@
 					<th>Fincontrat</th>
 					<th>Categorie</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,6 +28,7 @@
 					<td>{{e.finContrat}}</td>
 					<td>{{e.categorie}}</td>
 					<td><button class="btn btn-primary" [routerLink]="[e.idEmploye]">Modifier</button></td>
+					<td><button class="btn btn-primary" [routerLink]="['pointage',e.idEmploye,'insert']">Pointage</button></td>
 				</tr>
 			</tbody>
 		</table>
