@@ -49,6 +49,14 @@ values
 		100
 	);
 
+insert into
+	majoration(nomMaj,pourcentage)
+values
+	(
+		'Impot',
+		20
+	);
+
 insert into joursemaine(nomjour,idmajoration) values ('Lundi',4);
 insert into joursemaine(nomjour,idmajoration) values ('Mardi',4);
 insert into joursemaine(nomjour,idmajoration) values ('Mercredi',4);

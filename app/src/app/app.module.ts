@@ -20,6 +20,9 @@ import { InsertSemaineComponent } from './page/semaine/insert-semaine/insert-sem
 import { ListSemaineComponent } from './page/semaine/list-semaine/list-semaine.component';
 import { InsertPointageComponent } from './page/pointage/insert-pointage/insert-pointage.component';
 import { FichePaieComponent } from './page/paie/fiche-paie/fiche-paie.component';
+import { EtatStatComponent } from './page/etat-stat/etat-stat.component';
+import { ListMajorationComponent } from './page/majoration/list-majoration/list-majoration.component';
+import { UpdateMajorationComponent } from './page/majoration/update-majoration/update-majoration.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { FichePaieComponent } from './page/paie/fiche-paie/fiche-paie.component'
     InsertSemaineComponent,
     ListSemaineComponent,
     InsertPointageComponent,
-    FichePaieComponent
+    FichePaieComponent,
+    EtatStatComponent,
+    ListMajorationComponent,
+    UpdateMajorationComponent
   ],
   imports: [
     BrowserModule,

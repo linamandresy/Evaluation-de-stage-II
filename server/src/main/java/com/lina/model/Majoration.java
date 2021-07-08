@@ -1,5 +1,12 @@
 package com.lina.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedList;
+
+import com.lina.model.dao.DBConnect;
+
 public class Majoration {
 	private int idMajoration;
 	private String nomMaj;
@@ -41,5 +48,33 @@ public class Majoration {
 
 	public void setPourcentage(double pourcentage) {
 		this.pourcentage = pourcentage;
+	}
+	public static LinkedList<Majoration> find(Connection c)throws Exception{
+		String sql="select * from majoration order by idmajoration";
+		PreparedStatement pst = c.prepareStatement(sql);
+		ResultSet rs = null;
+		try{
+			rs = pst.executeQuery();
+			LinkedList<Majoration> result=new LinkedList<>();
+			while(rs.next())
+				result.add(new Majoration(rs.getInt(1),rs.getString(2),rs.getDouble(3)));
+			return result;
+
+		}catch(Exception ex){
+			throw ex;
+		}finally{
+			if(rs!=null) rs.close();
+		}
+	}
+	public static LinkedList<Majoration> find()throws Exception{
+		Connection c = null;
+		try{
+			c = DBConnect.getDAO().connect();
+			return find(c);
+		}catch(Exception ex){
+			throw ex;
+		}finally{
+			if(c!=null) c.close();
+		}
 	}
 }

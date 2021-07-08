@@ -12,7 +12,7 @@
 	
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" [routerLink]="['login']">Login</a></li>
+			<li><a (click)="logout()">Logout</a></li>
 		</ul>
 	</div>
 </header>
@@ -41,6 +41,18 @@
 				<a [routerLink]="['hs']">
 					<i class="fa fa-cogs"></i>
 					<span>Heure sup</span>
+				</a>
+			</li>
+			<li class="mt">
+				<a [routerLink]="['stat']">
+					<i class="fa fa-cogs"></i>
+					<span>Etat Statistique</span>
+				</a>
+			</li>
+			<li class="mt">
+				<a [routerLink]="['config']">
+					<i class="fa fa-cogs"></i>
+					<span>Config</span>
 				</a>
 			</li>
 		</ul>

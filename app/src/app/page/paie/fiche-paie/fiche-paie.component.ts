@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichePaieService } from 'src/app/service/fiche-paie.service';
+import { base_url } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-fiche-paie',
@@ -31,4 +32,8 @@ export class FichePaieComponent implements OnInit {
     });
   }
 
+  generatePDF():void{
+    console.log("hello");
+    window.open(base_url+"fichepaie/pdf/"+this.id);
+  }
 }

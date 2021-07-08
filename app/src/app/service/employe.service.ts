@@ -28,7 +28,6 @@ export class EmployeService {
     data.append("embauche",embauche);
     data.append("finContrat",finContrat);
     data.append("idCategorie",idCategorie);
-    console.log(base_url+"categorie")
     return this.http.post(base_url+"employe",data,opt);
   }
   findById(id:any):Observable<any>{

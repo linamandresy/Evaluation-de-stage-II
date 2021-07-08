@@ -1,5 +1,7 @@
 package com.lina.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.lina.model.label.FichePaie;
 
 public class FichePaieService {

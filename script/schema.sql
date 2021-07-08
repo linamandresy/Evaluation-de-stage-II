@@ -46,7 +46,7 @@ create table token(
 create table majoration(
 	idmajoration serial primary key,
 	nomMaj varchar(20) not null,
-	pourcentage decimal(5,2) not null check(pourcentage>=100 and pourcentage<=200)
+	pourcentage decimal(5,2) not null check(pourcentage>=0 and pourcentage<=200)
 );
 
 
@@ -74,3 +74,6 @@ create table pointage(
 );
 
 alter table employe alter column fincontrat drop not null;
+alter table majoration drop constraint majoration_pourcentage_check ;
+alter table majoration add check(pourcentage>=0 and pourcentage<=200);
+-- Alea

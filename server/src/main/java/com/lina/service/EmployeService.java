@@ -16,13 +16,17 @@ public class EmployeService {
 			return new Response(400,ex.getMessage());
 		}
 	}
-	public static Response insertEmploye(String token,String nom, String prenom,  Date naissance, Date embauche,Date finContrat, int idCategorie)throws Exception{
+	public static Response insertEmploye(String token,String nom, String prenom,  Date naissance, Date embauche,String finContrat, int idCategorie)throws Exception{
 		Connection c = null;
 		try {
 			DAOLina dao = DBConnect.getDAO();
 			c = dao.connect();
 			UtilisateurService.checkToken(c, token);
-			Employe emp = new Employe(nom, prenom, null, naissance, embauche, finContrat, idCategorie);
+			Date fc = null;
+			try{
+				fc=Date.valueOf(finContrat);
+			}catch(Exception ex){}
+			Employe emp = new Employe(nom, prenom, null, naissance, embauche, fc, idCategorie);
 			dao.insert(c, emp);
 			c.commit();
 			return new Response(200,"Employé inséré");
@@ -40,13 +44,17 @@ public class EmployeService {
 			return new Response(400,e.getMessage());
 		}
 	}
-	public static Response updateEmploye(String token,int idEmploye, String nom, String prenom, String matricule, Date naissance, Date embauche,Date finContrat, int idCategorie)throws Exception{
+	public static Response updateEmploye(String token,int idEmploye, String nom, String prenom, String matricule, Date naissance, Date embauche,String finContrat, int idCategorie)throws Exception{
 		Connection c = null;
 		try {
 			DAOLina dao = DBConnect.getDAO();
 			c = dao.connect();
 			UtilisateurService.checkToken(c, token);
-			Employe emp = new Employe(idEmploye, nom, prenom, matricule, naissance, embauche, finContrat, idCategorie);
+			Date fc = null;
+			try{
+				fc = Date.valueOf(finContrat);
+			}catch(Exception ex){}
+			Employe emp = new Employe(idEmploye, nom, prenom, matricule, naissance, embauche, fc, idCategorie);
 			dao.update(c, emp);
 			c.commit();
 			return new Response(200,"Employé modifié");

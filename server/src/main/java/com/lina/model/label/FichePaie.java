@@ -81,14 +81,21 @@ public class FichePaie extends FicheHorraire {
 		return getSalaireUnitaire()*(getHeureSup().get(0).getPourcentage()-100)/100;
 	}
 	public double getMontantHS50(){
-		return getTauxHS50()*getnBHeureSup50();
+		return getTauxHS50()*getNbHeureSup50();
 	}
 
 	public double getIndemnite(){
 		return categorie.getSalaireHN()*28/100;
 	}
+	public double getValeurHT(){
+		return (getMontantDimanche()+getMontantF()+getMontantHS30()+getMontantHS50()+getMontantJour()+getMontantNuit()+getMontantHFT());
+
+	}
+	public double getValeurImpot(){
+		return ((majorations.get(4).getPourcentage())/100)*(getMontantDimanche()+getMontantF()+getMontantHS30()+getMontantHS50()+getMontantJour()+getMontantNuit()+getMontantHFT());
+	}
 	public double getTotalPayer(){
-		return getMontantDimanche()+getMontantF()+getMontantHS30()+getMontantHS50()+getMontantJour()+getMontantNuit()+getMontantHFT();
+		return ((100-majorations.get(4).getPourcentage())/100)*(getMontantDimanche()+getMontantF()+getMontantHS30()+getMontantHS50()+getMontantJour()+getMontantNuit()+getMontantHFT());
 	}
 	public double getVraiTotal(){
 		return getTotalPayer()+getIndemnite();
@@ -106,11 +113,15 @@ public class FichePaie extends FicheHorraire {
 	}
 
 	public static FichePaie findById(Connection c, int id) throws Exception {
-		FicheHorraire fh = FicheHorraire.findById(c, id);
+		FicheHorraire fh = null;
+		try{
+			fh=FicheHorraire.findById(c, id);
+		}catch(Exception ex){}
 		EmployeLabel emp = EmployeLabel.findById(c, id);
 		Categorie cat = (Categorie) DBConnect.getDAO().findById(c, Categorie.class, emp.getIdCategorie());
+		List<HeureSup> heureSS= (List<HeureSup>)DBConnect.getDAO().find(c, HeureSup.class);
 		List<Majoration> maj = (List<Majoration>) DBConnect.getDAO().find(Majoration.class);
-		FichePaie fiche = new FichePaie(emp, cat, maj, id, fh.getNbHeureJour(), fh.getNbHeureNuit(), fh.getNbHeureDimanche(), fh.getNbHeureFT(), fh.getNbHeureF(),fh.getNbHeureSup30()+fh.getnBHeureSup50(), fh.getHeureSup()); 
+		FichePaie fiche = new FichePaie(emp, cat, maj, id, (fh!=null)?fh.getNbHeureJour():0, (fh!=null)?fh.getNbHeureNuit():0, (fh!=null)?fh.getNbHeureDimanche():0, (fh!=null)?fh.getNbHeureFT():0, (fh!=null)?fh.getNbHeureF():0,(fh!=null)?fh.getNbHeureSup30()+fh.getNbHeureSup50():0, heureSS); 
 		return fiche;
 	}
 

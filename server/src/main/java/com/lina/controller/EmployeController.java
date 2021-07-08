@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 @CrossOrigin(origins="*")
 @RequestMapping("employe")
 public class EmployeController {
+	
 	@GetMapping(value="")
 	public Response getListEmploye() throws Exception{
 		return EmployeService.getListEmploye();
 	}
-
 	@PostMapping(value="")
-	public Response postEmploye(@RequestHeader(name="Authorization") String token,String nom, String prenom,  Date naissance, Date embauche,Date finContrat, int idCategorie) throws Exception{
+	public Response postEmploye(@RequestHeader(name="Authorization") String token,String nom, String prenom,  Date naissance, Date embauche,String finContrat, int idCategorie) throws Exception{
 		return EmployeService.insertEmploye(token, nom, prenom, naissance, embauche, finContrat, idCategorie);
 	}
 	@GetMapping(value="/{id}")
@@ -35,7 +35,7 @@ public class EmployeController {
 		return EmployeService.findById(id);
 	}
 	@PutMapping(value="/{id}")
-	public Response putEmploye(@RequestHeader(name="Authorization") String token,@PathVariable int id, String nom, String prenom, String matricule, Date naissance, Date embauche,Date finContrat, int idCategorie) throws Exception{
+	public Response putEmploye(@RequestHeader(name="Authorization") String token,@PathVariable int id, String nom, String prenom, String matricule, Date naissance, Date embauche,String finContrat, int idCategorie) throws Exception{
 		return EmployeService.updateEmploye(token, id, nom, prenom, matricule, naissance, embauche, finContrat, idCategorie);
 	}
 }

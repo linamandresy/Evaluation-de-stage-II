@@ -1,0 +1,45 @@
+<div class="container">
+	<h1>Etat Statistique</h1>
+	<hr>
+	<table class="table"  id="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Heure Jour</th>
+				<th>Heure Nuit</th>
+				<th>Heure Dimanche</th>
+				<th>Heure Férié Travaillé</th>
+				<th>Heure Férié </th>
+				<th>Heure Sup 30 </th>
+				<th>Heure Sup 50 </th>
+				<th>Total à payer </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let f of heure">		
+				<td>{{this.f.employe.nom}}</td>
+				<td>{{f.nbHeureJour}} h</td>
+				<td>{{f.nbHeureNuit}} h</td>
+				<td>{{f.nbHeureDimanche}} h</td>
+				<td>{{f.nbHeureFT}} h</td>
+				<td>{{f.nbHeureF}} h</td>
+				<td>{{f.nbHeureSup30}} h</td>
+				<td>{{f.nbHeureSup50}} h</td>
+				<td>{{f.vraiTotal |number:"1.2-2" }} Ar</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>	
+				<td></td>
+				<td>{{fiche.sommeHeureJour}} h</td>
+				<td>{{fiche.sommeHeureNuit}} h</td>
+				<td>{{fiche.sommeHeureDimanche}} h</td>
+				<td>{{fiche.sommeHeureFT}} h</td>
+				<td>{{fiche.sommeHeureF}} h</td>
+				<td>{{fiche.sommeHeureSup30}} h</td>
+				<td>{{fiche.sommeHeureSup50}} h</td>
+				<td>{{fiche.sommeVraiTotal | number:"1.2-2"}} Ar</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>

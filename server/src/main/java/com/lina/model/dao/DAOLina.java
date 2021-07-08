@@ -60,6 +60,9 @@ public class DAOLina {
 
 	private boolean isIdNull(Method getter,Object caller)throws Exception{
 		Object response = getter.invoke(caller,null);
+		if(response==null){
+			return false;
+		}
 		return response.getClass().getName().endsWith("Integer") && getter.getName().startsWith("getId") && response.equals(0);
 	}
 	public void insert(Connection c, Object obj) throws Exception {

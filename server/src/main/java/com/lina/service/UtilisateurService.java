@@ -31,4 +31,11 @@ public class UtilisateurService {
 	public static Token checkToken(String token)throws Exception{
 		return Token.getValidToken(token.substring(7));
 	}
+	public static Response checkValidToken(String token){
+		try {
+			return new Response(200,checkToken(token));
+		} catch (Exception e) {
+			return new Response(400,e.getMessage());
+		}
+	}
 }

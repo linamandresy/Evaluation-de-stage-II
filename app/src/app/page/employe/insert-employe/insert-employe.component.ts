@@ -10,10 +10,10 @@ import { EmployeService } from 'src/app/service/employe.service';
 })
 export class InsertEmployeComponent implements OnInit {
   nom:string=''
-  prenom:string=''
-  naissance:any=''
-  embauche:any=''
-  fincontrat:any=''
+  prenom:string='';
+  naissance:any=null;
+  embauche:any=null;
+  fincontrat:any=null;
   idCategorie:any=''
   categories:any=[];
   error:string='';

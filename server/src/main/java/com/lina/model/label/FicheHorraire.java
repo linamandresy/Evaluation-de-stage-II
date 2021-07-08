@@ -76,7 +76,7 @@ public class FicheHorraire {
 		return nbHeureSup30;
 	}
 
-	public double getnBHeureSup50() {
+	public double getNbHeureSup50() {
 		return nBHeureSup50;
 	}
 

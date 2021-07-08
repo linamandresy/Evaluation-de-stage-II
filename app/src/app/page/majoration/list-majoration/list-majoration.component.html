@@ -1,0 +1,29 @@
+<div class="container">
+	<form>
+
+		<table class="table">
+			<tr>
+				<th>Nom</th>
+				<th>Pourcentage</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>Nuit</td>
+				<td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="nuit" type="number" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Dimanche</td>
+				<td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="dimanche" type="number" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Férié</td>
+				<td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="ferie" type="number" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Impot</td>
+				<td><input [ngModelOptions]="{standalone: true}" [ngModel]="imp" type="number" class="form-control"></td>
+			</tr>
+		</table>
+		<button class="btn btn-primary" (click)="update()">Update</button>
+	</form>
+</div>

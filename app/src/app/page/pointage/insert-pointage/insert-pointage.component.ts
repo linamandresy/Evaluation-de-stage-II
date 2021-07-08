@@ -94,12 +94,9 @@ export class InsertPointageComponent implements OnInit {
 
       this.fs.getFicheById(this.id).subscribe(
         (res)=>{
-          console.log(res);
           if(res.status==200){
             this.isSet=true;
             this.ficheHorraire=res.data
-            console.log(this.isSet)
-            console.log(this.ficheHorraire)
           }
           else this.isSet=false;
         },(err)=>{
@@ -112,7 +109,7 @@ export class InsertPointageComponent implements OnInit {
   save():void{    
     this.service.insertPointage(this.lundi,this.mardi,this.mercredi,this.jeudi,this.vendredi,this.samedi,this.dimanche).subscribe(
       (res)=>{
-        if(res.status==200) this.router.navigate(['pointage',this.id,'insert'])
+        if(res.status==200) window.location.reload()
         else this.error=res.data;
       },(err)=>{
         this.router.navigate(['error',err.message])

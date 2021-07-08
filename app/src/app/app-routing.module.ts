@@ -7,57 +7,80 @@ import { InsertEmployeComponent } from './page/employe/insert-employe/insert-emp
 import { ListEmployeComponent } from './page/employe/list-employe/list-employe.component';
 import { UpdateEmployeComponent } from './page/employe/update-employe/update-employe.component';
 import { ErrorComponent } from './page/error/error.component';
+import { EtatStatComponent } from './page/etat-stat/etat-stat.component';
 import { InsertHsComponent } from './page/hs/insert-hs/insert-hs.component';
 import { ListHsComponent } from './page/hs/list-hs/list-hs.component';
 import { UpdateHsComponent } from './page/hs/update-hs/update-hs.component';
 import { LoginComponent } from './page/login/login.component';
+import { ListMajorationComponent } from './page/majoration/list-majoration/list-majoration.component';
 import { FichePaieComponent } from './page/paie/fiche-paie/fiche-paie.component';
 import { InsertPointageComponent } from './page/pointage/insert-pointage/insert-pointage.component';
 import { ListSemaineComponent } from './page/semaine/list-semaine/list-semaine.component';
+import { AuthGuardService } from './service/auth-guard.service';
 
 const routes: Routes = [
   {
     path:'',
-    component:ListEmployeComponent
+    component:ListEmployeComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'login',
     component:LoginComponent
   },{
     path:'insert',
-    component:InsertEmployeComponent
+    component:InsertEmployeComponent,
+    canActivate:[AuthGuardService]
+  },{
+    path:'stat',
+    component:EtatStatComponent,
+    canActivate:[AuthGuardService]
+  },{
+    path:'config',
+    component:ListMajorationComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'hs',
-    component:ListHsComponent
+    component:ListHsComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'categorie',
-    component:ListCategorieComponent
+    component:ListCategorieComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'semaine',
-    component:ListSemaineComponent
+    component:ListSemaineComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'hs/insert',
-    component:InsertHsComponent
+    component:InsertHsComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'hs/:id',
-    component:UpdateHsComponent
+    component:UpdateHsComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'paie/:id',
-    component:FichePaieComponent
+    component:FichePaieComponent,
+    canActivate:[AuthGuardService]
   },{
     path:':id',
-    component:UpdateEmployeComponent
+    component:UpdateEmployeComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'error/:message',
     component:ErrorComponent
   },{
     path:'categorie/insert',
-    component:InsertCategorieComponent
+    component:InsertCategorieComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'categorie/:id',
-    component:UpdateCategorieComponent
+    component:UpdateCategorieComponent,
+    canActivate:[AuthGuardService]
   },{
     path:'pointage/:idemp/insert',
-    component:InsertPointageComponent
+    component:InsertPointageComponent,
+    canActivate:[AuthGuardService]
   }
 ];
 
